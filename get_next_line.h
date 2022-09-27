@@ -6,14 +6,19 @@
 /*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:10:37 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/27 13:21:02 by sushu            ###   ########.fr       */
+/*   Updated: 2022/09/27 13:23:47 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <unistd.h>
 # include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+#endif
 
 size_t	ft_strlen(const char *s);
 static int	ft_read_fd(int fd, char **line);
