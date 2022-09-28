@@ -6,7 +6,7 @@
 /*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:09:28 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/27 13:21:05 by sushu            ###   ########.fr       */
+/*   Updated: 2022/09/28 16:06:46 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_strcpy(char *dst, const char *src)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = 0;
+	dst[i] = '\0';
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -64,55 +64,130 @@ void	ft_bzero(char *s, size_t n)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		str2_len;
-	int		str_len;
+	int		s1_len;
+	int		s2_len;
 	int		i;
-	char	*str;
+	char	*res;
 
-	str2_len = 0;
-	while (s2[str2_len] && s2[str2_len] != '\n')
-		str2_len++;
-	if (s2[str2_len] == '\n')
-		str2_len++;
-	str = malloc(ft_strlen(s1) + str2_len + 1);
-	if (!str)
+	s2_len = 0;
+	while (s2[s2_len] && s2[s2_len] != '\n')
+		s2_len++;
+	if (s2[s2_len] == '\n')
+		s2_len++;
+	res = malloc(ft_strlen(s1) + s2_len + 1);
+	if (!res)
 		return (NULL);
-	ft_strcpy(str, s1);
-	str_len = ft_strlen(str);
+	ft_strcpy(res, s1);
+	s1_len = ft_strlen(res);
 	i = 0;
-	while (i < str2_len)
+	while (i < s2_len)
 	{
-		str[str_len + i] = s2[i];
+		res[s1_len + i] = s2[i];
 		i++;
 	}
-	str[str_len + i] = 0;
+	res[s1_len + i] = 0;
 	free(s1);
-	return (str);
+	return (res);
 }
 
 
-// char	*ft_strjoin(char const *s1, char const *s2)
+
+
+// char	*ft_read(int fd, char *s)
 // {
-// 	char	*res;
+// 	char	*str;
+// 	int		i;
+
+// 	i = 1;
+// 	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+// 	if (!str)
+// 		return (NULL);
+// 	while (!ft_strchr(s, '\n') && i != 0)
+// 	{
+// 		i = read(fd, str, BUFFER_SIZE);
+// 		if (i == -1)
+// 		{
+// 			free(str);
+// 			return (NULL);
+// 		}
+// 		str[i] = '\0';
+// 		s = ft_strjoin(s, str);
+// 	}
+// 	free(str);
+// 	return (s);
+// }
+
+// char	*ft_write(char *str)
+// {
+// 	char	*s;
+// 	int		l;
+// 	int		i;
+
+// 	l = 0;
+// 	i = 0;
+// 	if (!str[0])
+// 		return (NULL);
+// 	while (str[l] && str[l] != '\n')
+// 		l++;
+// 	s = (char *)malloc(sizeof(char) * (l + 2));
+// 	if (!s)
+// 		return (NULL);
+// 	while (str[i] && str[i] != '\n')
+// 	{
+// 		s[i] = str[i];
+// 		i++;
+// 	}
+// 	if (str[i] == '\n')
+// 	{
+// 		s[i] = str[i];
+// 		i++;
+// 	}
+// 	s[i] = '\0';
+// 	return (s);
+// }
+
+// char	*ft_copy(char *s)
+// {
+// 	char	*str;
 // 	int		i;
 // 	int		j;
 
-// 	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-// 	if (!res)
-// 		return (0);
 // 	i = 0;
+// 	if (!s)
+// 		return (NULL);
+// 	while (s[i] && s[i] != '\n')
+// 		i++;
+// 	if (!s[i])
+// 	{
+// 		free(s);
+// 		return (NULL);
+// 	}
+// 	str = (char *)malloc(sizeof(char) * (ft_strlen(s) - i + 1));
+// 	if (!str)
+// 		return (NULL);
+// 	i++;
 // 	j = 0;
-// 	while (s1[i])
+// 	while (s[i])
+// 		str[j++] = s[i++];
+// 	str[j] = '\0';
+// 	free(s);
+// 	return (str);
+// }
+
+// char	*get_next_line(int fd)
+// {
+// 	char		*str;
+// 	static char	*s;
+
+// 	if (fd < 0 || BUFFER_SIZE < 0 || BUFFER_SIZE > 2147483647)
+// 		return (NULL);
+// 	s = ft_read(fd, s);
+// 	if (!s)
 // 	{
-// 		res[i] = s1[i];
-// 		i++;
+// 		free (s);
+// 		return (NULL);
 // 	}
-// 	while (s2[j])
-// 	{
-// 		res[i] = s2[j];
-// 		i++;
-// 		j++;
-// 	}
-// 	res[i] = '\0';
-// 	return (res);
+// 	str = ft_write(s);
+// 	s = ft_copy(s);
+// 	return (str);
 // }

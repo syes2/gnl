@@ -6,7 +6,7 @@
 /*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:09:32 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/27 13:21:04 by sushu            ###   ########.fr       */
+/*   Updated: 2022/09/28 16:30:53 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	ft_read_fd(int fd, char **line)
 {
-	static char	buff[BUFFER_SIZE + 1];
+	static char	buf[BUFFER_SIZE + 1];
 	int			ret;
 	size_t		len;
 
-	if (buff[0] == '\0')
+	if (buf[0] == '\0')
 	{
-		ret = read(fd, buff, BUFFER_SIZE);
-		buff[ret] = '\0';
+		ret = read(fd, buf, BUFFER_SIZE);
+		buf[ret] = '\0';
 		if (ret < 1)
 		{
 			if (ret == -1)
@@ -30,12 +30,12 @@ static int	ft_read_fd(int fd, char **line)
 		}
 	}
 	len = 0;
-	while (buff[len] && buff[len] != '\n')
+	while (buf[len] && buf[len] != '\n')
 		len++;
-	if (buff[len] == '\n')
+	if (buf[len] == '\n')
 		len++;
-	*line = ft_strjoin(*line, buff);
-	ft_strcpy(buff, &buff[len]);
+	*line = ft_strjoin(*line, buf);
+	ft_strcpy(buf, &buf[len]);
 	return (1);
 }
 
@@ -43,14 +43,14 @@ char	*get_next_line(int fd)
 {
 	char	*line;
 
-	line = malloc(1);
+	line = malloc(1); 
 	if (!line)
 		return (NULL);
 	line[0] = '\0';
 	while (!ft_strchr(line, '\n'))
 		if (!ft_read_fd(fd, &line))
 			break ;
-	if (line[0] == '\0')
+	if (!line[0])
 	{
 		free (line);
 		return (0);
