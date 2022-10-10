@@ -6,7 +6,7 @@
 /*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:09:32 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/29 14:15:05 by sushu            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:26:28 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,54 @@
 char	*read_line(int fd, char *buf)
 {
 	char	*str;
-	int		i;
+	int		rsize;
 
-	i = 1;
+	rsize = 1;
 	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!str)
 		return (NULL);
-	while (!ft_strchr(buf, '\n') && i != 0)
+	while (!ft_strchr(buf, '\n') && rsize != 0)
 	{
-		i = read(fd, str, BUFFER_SIZE);
-		if (i == -1)
+		rsize = read(fd, str, BUFFER_SIZE);
+		if (rsize == -1)
 		{
 			free(str);
 			return (NULL);
 		}
-		str[i] = '\0';
+		str[rsize] = '\0';
 		buf = ft_strjoin(buf, str);
 	}
 	free(str);
 	return (buf);
 }
 
-char	*get_line(char *str)
+char	*get_line(char *buf)
 {
-	char	*s;
+	char	*str;
 	int		l;
 	int		i;
 
 	l = 0;
 	i = 0;
-	if (!str[0])
+	if (!buf[0])
 		return (NULL);
-	while (str[l] && str[l] != '\n')
+	while (buf[l] && buf[l] != '\n')
 		l++;
-	s = (char *)malloc(sizeof(char) * (l + 2));
-	if (!s)
+	str = (char *)malloc(sizeof(char) * (l + 2));
+	if (!str)
 		return (NULL);
-	while (str[i] && str[i] != '\n')
+	while (buf[i] && buf[i] != '\n')
 	{
-		s[i] = str[i];
+		str[i] = buf[i];
 		i++;
 	}
-	if (str[i] == '\n')
+	if (buf[i] == '\n')
 	{
-		s[i] = str[i];
+		str[i] = buf[i];
 		i++;
 	}
-	s[i] = '\0';
-	return (s);
+	str[i] = '\0';
+	return (str);
 }
 
 char	*backup(char *buf)

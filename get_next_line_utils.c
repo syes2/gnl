@@ -6,7 +6,7 @@
 /*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:09:28 by seungbae          #+#    #+#             */
-/*   Updated: 2022/10/10 14:40:37 by sushu            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:17:38 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 && !s2)
 		return (NULL);
-	str = malloc(((ft_strlen (s1) + ft_strlen (s2)) + 1) * sizeof(char));
+	str = malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	if (s1)
