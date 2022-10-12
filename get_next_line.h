@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:10:37 by seungbae          #+#    #+#             */
-/*   Updated: 2022/10/12 16:29:20 by sushu            ###   ########.fr       */
+/*   Updated: 2022/10/12 17:32:04 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-#endif
+#  define BUFFER_SIZE 1024
+# endif
 
 char	*get_next_line(int fd);
 char	*backup(char *buf);

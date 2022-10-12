@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:09:32 by seungbae          #+#    #+#             */
-/*   Updated: 2022/10/12 16:29:23 by sushu            ###   ########.fr       */
+/*   Updated: 2022/10/12 17:32:01 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*buf;
 
-	if (fd < 0 || BUFFER_SIZE < 0 || BUFFER_SIZE > 2147483647)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	buf = read_line(fd, buf);
 	if (!buf)
@@ -110,51 +110,3 @@ char	*get_next_line(int fd)
 	buf = backup(buf);
 	return (line);
 }
-
-// #include "get_next_line.h"
-
-// static int	ft_read_fd(int fd, char **line)
-// {
-// 	static char	buf[BUFFER_SIZE + 1];
-// 	int			ret;
-// 	size_t		len;
-
-// 	if (!buf[0])
-// 	{
-// 		ret = read(fd, buf, BUFFER_SIZE);
-// 		if (ret < 1)
-// 		{
-// 			if (ret == -1)
-// 				ft_bzero(*line, 1);
-// 			return (0);
-// 		}
-// 		buf[ret] = '\0';
-// 	}
-// 	len = 0;
-// 	while (buf[len] && buf[len] != '\n')
-// 		len++;
-// 	if (buf[len] == '\n')
-// 		len++;
-// 	*line = ft_strjoin(*line, buf);
-// 	ft_strcpy(buf, &buf[len]);
-// 	return (1);
-// }
-
-// char	*get_next_line(int fd)
-// {
-// 	char	*line;
-
-// 	line = malloc(1); 
-// 	if (!line)
-// 		return (NULL);
-// 	line[0] = '\0';
-// 	while (!ft_strchr(line, '\n'))
-// 		if (!ft_read_fd(fd, &line))
-// 			break ;
-// 	if (!line[0])
-// 	{
-// 		free (line);
-// 		return (0);
-// 	}
-// 	return (line);
-// }
