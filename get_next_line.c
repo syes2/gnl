@@ -6,7 +6,7 @@
 /*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:09:32 by seungbae          #+#    #+#             */
-/*   Updated: 2022/10/10 16:26:28 by sushu            ###   ########.fr       */
+/*   Updated: 2022/10/12 16:29:23 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ char	*read_line(int fd, char *buf)
 char	*get_line(char *buf)
 {
 	char	*str;
-	int		l;
+	int		j;
 	int		i;
 
-	l = 0;
 	i = 0;
+	j = 0;
 	if (!buf[0])
 		return (NULL);
-	while (buf[l] && buf[l] != '\n')
-		l++;
-	str = (char *)malloc(sizeof(char) * (l + 2));
+	while (buf[j] && buf[j] != '\n')
+		j++;
+	str = (char *)malloc(sizeof(char) * (j + 2));
 	if (!str)
 		return (NULL);
 	while (buf[i] && buf[i] != '\n')
